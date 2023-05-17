@@ -2,7 +2,7 @@
  * @author Pork
  * @description 用户数据模型
  */
-
+const { DataTypes } = require("sequelize"); // 导入内置数据类型
 const seq = require('../seq')
 const {
     STRING,
@@ -12,6 +12,11 @@ const {
 } = require('../dataTypes')
 
 const User = seq.define('user', {
+    id: {
+        primaryKey: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4 // 或 DataTypes.UUIDV1
+    },
     userName: {
         type: STRING,
         allowNull: false,
