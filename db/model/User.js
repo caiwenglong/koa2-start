@@ -82,17 +82,17 @@ const User = seq.define('user', {
         allowNull: true,
         comment: '工作/技能'
     },
-    articlesTotal: {
-        type: INTEGER,
-        allowNull: false,
-        defaultValue: 0,
-        comment: '文章总量'
-    },
-    github: {
-        type: STRING,
-        allowNull: true,
-        comment: 'github地址'
-    }
+    // articlesTotal: {
+    //     type: INTEGER,
+    //     allowNull: false,
+    //     defaultValue: 0,
+    //     comment: '文章总量'
+    // },
+    // github: {
+    //     type: STRING,
+    //     allowNull: true,
+    //     comment: 'github地址'
+    // }
 })
 
 module.exports = User

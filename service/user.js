@@ -38,7 +38,6 @@ const getUserInfo = async (userName, password) => {
  * @param { Object[User] } User
  */
 const createUser = async ({ userName, password, email, authLevel = 4, nickName, gender = 0 }) => {
-    console.log(userName, password, email)
     const result = await User.create({
         userName,
         password,

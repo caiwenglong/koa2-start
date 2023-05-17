@@ -90,29 +90,43 @@ const logout = async ctx => {
 * @params { Object[User] }
 * @return ResModel 成功｜失败
 */
-const create = async ({ userName, password, email }) => {
-  const userInfo = await getUserInfo(userName)
+const create = async (userInfo) => {
+  const user = await getUserInfo(userInfo.userName)
 
-  if (userInfo) {
+  if (user) {
       // 用户名已存在
       return new FailedModel(userNameAllReadyExist)
   }
 
   // 注册 service 层
   try {
-      const user = await createUser({
-          userName,
-          password: strCrypto(password),
-          email
-      })
+    let index = 1;
+    let newUser = {
+      id: index,
+      userName: userInfo.userName ? userInfo.userName : "",
+      password: strCrypto(userInfo.password) ? strCrypto(userInfo.password) : "",
+      email: userInfo.email ? userInfo.email : "",
+      authLevel: userInfo.authLevel ? userInfo.authLevel : 1,
+      nickName: userInfo.nickName ? userInfo.nickName : "",
+      gender: userInfo.gender ? userInfo.gender : 1,
+      age: userInfo.age ? userInfo.age : "",
+      avatarUrl: userInfo.avatarUrl ? userInfo.avatarUrl : "",
+      phoneNumber: userInfo.phoneNumber ? userInfo.phoneNumber : "",
+      birthday: userInfo.birthday ? userInfo.birthday : "",
+      jobs: userInfo.jobs ? userInfo.jobs : "",
+      updatedAt: userInfo.updatedAt ? userInfo.updatedAt : "",
+      createdAt: userInfo.createdAt ? userInfo.createdAt : ""
+  }
+      const user = await createUser(newUser)
       if (!user) {
           return new FailedModel(createUserFail)
       }
+      index ++
       return new SuccessModel({ message: '创建用户成功' })
   } catch (ex) {
       return new FailedModel({
-          errno: ex.parent.errno,
-          message: ex.errors[0].message
+          errno: ex.parent?.errno,
+          message: ex.message
       })
   }
 }

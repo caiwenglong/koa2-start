@@ -37,7 +37,6 @@ router.post('/logout', async (ctx, next) => {
 // 注册/创建 新用户
 router.post('/create', genValidator(userValidate), async (ctx, next) => {
 	const { userName, password, email, authLevel, gender } = ctx.request.body
-	console.log(1)
 	// controller
 	const res = await create({
 		userName,

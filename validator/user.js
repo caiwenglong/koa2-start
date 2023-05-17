@@ -26,7 +26,7 @@ const USER_SCHEMA = {
         },
         email: {
             type: 'string',
-            pattern: '^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$', // 邮箱
+            pattern: '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$', // 邮箱
             maxLength: 32,
             minLength: 4
         },
@@ -44,8 +44,6 @@ const USER_SCHEMA = {
  * @return ajv.errors | undefined
  */
 const userValidate = (data) => {
-    console.log(data)
-    console.log("======")
     return validate(USER_SCHEMA, data)
 }
 

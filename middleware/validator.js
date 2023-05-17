@@ -16,8 +16,6 @@ const { jsonSchemaError } = require('../model/ErrorModel')
 const genValidator = validateFn => {
     return async (ctx, next) => {
         const data = ctx.request.body
-        console.log(ctx.request)
-        console.log("-----")
         const err = validateFn(data)
 
         if (err) {
