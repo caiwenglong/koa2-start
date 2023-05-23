@@ -1,5 +1,5 @@
 /**
- * @author Pork
+ * @author cwl
  * @description 用户数据模型
  */
 const { DataTypes } = require("sequelize"); // 导入内置数据类型

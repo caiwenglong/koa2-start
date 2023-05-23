@@ -1,5 +1,7 @@
 const Router = require('@koa/router')
+
 const router = new Router()
+const { cGetAllWebsite } = require('../controllers/cWebsite')
 const {
 	isExist,
 	login,
@@ -14,6 +16,15 @@ const { isSuperAdmin } = require('../middleware/isSuperAdmin')
 const { isTest } = require('../utils/env')
 
 router.prefix('/api/user')
+
+router.get('/all', async (ctx, next) => {
+	console.log(1)
+    let websiteList = await cGetAllWebsite();
+    console.log(websiteList)
+	// ctx.body = {
+	// 	name: "123"
+	// }
+})
 
 // 用户名是否存在
 router.post('/isExist', async (ctx, next) => {
@@ -58,5 +69,11 @@ router.post('/delete', isSuperAdmin, async (ctx, next) => {
 router.get('/test', checkLogin, async (ctx, next) => {
 	ctx.body = ctx.session.userInfo
 })
+
+
+router.get('/getContentRoutes ', async (ctx, next) => {
+	console.log("+++++++++++++++++++++++++++++++++")
+})
+
 
 module.exports = router
