@@ -1,4 +1,4 @@
-const { getAllWebsiteCategory, sGetSingleWebsiteCategory, serviceAddCategory } = require("../service/sWebsiteCategory")
+const { getAllWebsiteCategory, sGetSingleWebsiteCategory, serviceAddCategory, sBulkAddCategory } = require("../service/sWebsiteCategory")
 const {
   SuccessModel,
   FailedModel
@@ -54,7 +54,18 @@ const cAddCategory = async (newCategory) => {
       message: ex.message
     })
   }
+}
 
+const cBulkddCategory = async (categories) => {
+  try {
+    const length = await sBulkAddCategory(categories)
+    return new SuccessModel({ message: '分类批量添加成功，总条数为：' + length })
+  } catch(ex) {
+   return new FailedModel({
+      errno: ex.parent?.errno,
+      message: ex.message
+    })
+  }
 }
 
 const cGetAllWebsiteCategory = async () => {
@@ -74,5 +85,6 @@ const cGetAllWebsiteCategory = async () => {
 module.exports = {
     cGetAllWebsiteCategory,
     isExist,
-    cAddCategory
+    cAddCategory,
+    cBulkddCategory
 }
