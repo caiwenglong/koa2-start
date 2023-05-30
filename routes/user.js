@@ -15,12 +15,11 @@ const { checkLogin } = require('../middleware/checkLogin')
 const { isSuperAdmin } = require('../middleware/isSuperAdmin')
 const { isTest } = require('../utils/env')
 
-router.prefix('/api/user')
+router.prefix('/user')
 
 router.get('/all', async (ctx, next) => {
 	console.log(1)
     let websiteList = await cGetAllWebsite();
-    console.log(websiteList)
 	// ctx.body = {
 	// 	name: "123"
 	// }

@@ -13,6 +13,7 @@ const { REDIS_CONF } = require('./conf/db')
 
 const userApiRouter = require('./routes/user')
 const websiteApiRouter = require('./routes/rWebsite')
+const websiteCategoryApiRouter = require('./routes/rWebsiteCategory')
 
 // error handler
 onerror(app)
@@ -54,6 +55,7 @@ app.use(
 
 app.use(userApiRouter.routes(), userApiRouter.allowedMethods())
 app.use(websiteApiRouter.routes(), websiteApiRouter.allowedMethods())
+app.use(websiteCategoryApiRouter.routes(), websiteCategoryApiRouter.allowedMethods())
 
 // error-handling
 app.on('error', (err, ctx) => {

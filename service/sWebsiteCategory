@@ -1,0 +1,37 @@
+const { WebsiteCategory } = require('../db/model/index')
+
+
+const sGetSingleWebsiteCategory = async (name) => {
+     // 查询条件
+    const whereOpt = {
+        name,
+    }
+    // 查询
+    const result = await WebsiteCategory.findOne({
+        where: whereOpt,
+    })
+
+    console.log(result)
+
+    return result
+}
+
+const getAllWebsiteCategory = async () => {
+    const websietCategoryList = await WebsiteCategory.findAll();
+    return websietCategoryList ? websietCategoryList : []
+}
+
+const serviceAddCategory = async ({name, parentID}) => {
+    const result = await WebsiteCategory.create({
+       name,
+       parentID
+    })
+    console.log(result)
+    return result.dataValues
+}
+
+module.exports = {
+    getAllWebsiteCategory,
+    sGetSingleWebsiteCategory,
+    serviceAddCategory
+}
