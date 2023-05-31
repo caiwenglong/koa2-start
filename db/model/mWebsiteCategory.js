@@ -20,7 +20,7 @@ const WebsiteCategory = seq.define('website_category', {
     name: {
         type: STRING,
         allowNull: false,
-        unique: false, // 唯一性
+        unique: true, // 唯一性
         comment: '网站分类名称'
     },
     parentID: {

@@ -31,11 +31,34 @@ const serviceAddCategory = async ({name, parentID}) => {
 }
 
 const sBulkAddCategory = async (categoryList) => {
-    const options = {
-        updateOnDuplicate: ['name']   // 通过 name 字段判断数据是否已存在
-    }
-    const result = await WebsiteCategory.bulkCreate(categoryList, options)
-    return result.length
+
+    const promises = categoryList.map(obj =>
+        WebsiteCategory.findOrCreate({
+            where: {
+            name: obj.name
+            },
+            defaults: obj
+        })
+    );
+
+    let length = 0;
+    Promise.all(promises)
+    .then(results => {
+        const created = results.filter(result => result[1]);
+        length = created.length;
+        console.log(`Created ${created.length} new users.`);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
+    return length
+
+    // const options = {
+    //     updateOnDuplicate: ['name']   // 通过 name 字段判断数据是否已存在
+    // }
+    // const result = await WebsiteCategory.bulkCreate(categoryList, options)
+    // return result.length
 }
 
 module.exports = {
