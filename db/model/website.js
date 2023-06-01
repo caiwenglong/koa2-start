@@ -47,6 +47,12 @@ const Website = seq.define('website', {
         unique: false, // 唯一性
         comment: '分类'
     },
+    categoryID: {
+        type: DataTypes.UUID,
+        allowNull: false,
+        unique: false, // 唯一性
+        comment: '分类ID'
+    },
 })
 
 module.exports = Website

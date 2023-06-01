@@ -2,15 +2,15 @@ const Router = require('@koa/router')
 
 const router = new Router()
 
-const { cGetAllWebsiteCategory, cAddCategory, cBulkddCategory } = require('../controllers/cWebsiteCategory')
+const { cGetFirstWebsiteCategory, cAddCategory, cBulkddCategory } = require('../controllers/cWebsiteCategory')
 router.prefix('/website/category')
 
 /**
  * 获取所有网站信息
  */
-router.get('/all', async (ctx, next) => {
+router.get('/first', async (ctx, next) => {
     console.log(1)
-    let result = await cGetAllWebsiteCategory();
+    let result = await cGetFirstWebsiteCategory();
     ctx.body = result
 })
 

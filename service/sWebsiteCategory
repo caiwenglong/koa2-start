@@ -16,8 +16,15 @@ const sGetSingleWebsiteCategory = async (name) => {
     return result
 }
 
-const getAllWebsiteCategory = async () => {
-    const websietCategoryList = await WebsiteCategory.findAll();
+const getFirstWebsiteCategory = async () => {
+    // 查询条件
+    const whereOpt = {
+        parentID: '0',
+    }
+    const websietCategoryList = await WebsiteCategory.findAll({
+        where: whereOpt,
+    });
+    console.log(websietCategoryList)
     return websietCategoryList ? websietCategoryList : []
 }
 
@@ -62,7 +69,7 @@ const sBulkAddCategory = async (categoryList) => {
 }
 
 module.exports = {
-    getAllWebsiteCategory,
+    getFirstWebsiteCategory,
     sGetSingleWebsiteCategory,
     serviceAddCategory,
     sBulkAddCategory

@@ -36,7 +36,10 @@ dependencies:
     version: 5.0.0
   koa-views:
     specifier: ^8.0.0
-    version: 8.0.0
+    version: 8.0.0(lodash@4.17.21)
+  lodash:
+    specifier: ^4.17.21
+    version: 4.17.21
   mysql:
     specifier: ^2.18.1
     version: 2.18.1
@@ -223,7 +226,7 @@ packages:
       proto-list: 1.2.4
     dev: false
 
-  /consolidate@0.16.0:
+  /consolidate@0.16.0(lodash@4.17.21):
     resolution: {integrity: sha512-Nhl1wzCslqXYTJVDyJCu3ODohy9OfBMB5uD2BiBTzd7w+QY0lBzafkR8y8755yMYHAaMD4NuzbAw03/xzfw+eQ==}
     engines: {node: '>= 0.10.0'}
     peerDependencies:
@@ -389,6 +392,7 @@ packages:
         optional: true
     dependencies:
       bluebird: 3.7.2
+      lodash: 4.17.21
     dev: false
 
   /content-disposition@0.5.4:
@@ -891,7 +895,7 @@ packages:
       - supports-color
     dev: false
 
-  /koa-views@8.0.0:
+  /koa-views@8.0.0(lodash@4.17.21):
     resolution: {integrity: sha512-nvGKdG8yVyomhouwN060SWd7Q9kGYRr322dwN6jvI04hgiDEW9vsPXEje9OEtBgGXxHURe7xOzo3bxQ3DBc1Nw==}
     peerDependencies:
       '@types/koa': ^2.13.1
@@ -899,7 +903,7 @@ packages:
       '@types/koa':
         optional: true
     dependencies:
-      consolidate: 0.16.0
+      consolidate: 0.16.0(lodash@4.17.21)
       debug: 4.3.4
       get-paths: 0.0.7
       koa-send: 5.0.1

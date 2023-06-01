@@ -1,9 +1,10 @@
-const { getAllWebsiteCategory, sGetSingleWebsiteCategory, serviceAddCategory, sBulkAddCategory } = require("../service/sWebsiteCategory")
+const { getFirstWebsiteCategory, sGetSingleWebsiteCategory, serviceAddCategory, sBulkAddCategory } = require("../service/sWebsiteCategory")
 const {
   SuccessModel,
   FailedModel
 } = require('../model/ResModel')
 
+const _ = require('lodash');
 
 /**
 * @description 判断用户名是否存在
@@ -58,6 +59,7 @@ const cAddCategory = async (newCategory) => {
 
 const cBulkddCategory = async (categories) => {
   try {
+    categories = _.uniqBy(categories, 'name')
     const length = await sBulkAddCategory(categories)
     return new SuccessModel({ message: '分类批量添加成功，总条数为：' + length })
   } catch(ex) {
@@ -68,9 +70,9 @@ const cBulkddCategory = async (categories) => {
   }
 }
 
-const cGetAllWebsiteCategory = async () => {
+const cGetFirstWebsiteCategory = async () => {
     try {
-        const websiteCategoryList = await getAllWebsiteCategory();
+        const websiteCategoryList = await getFirstWebsiteCategory();
         return new SuccessModel({ 
             message: '网站获取成功',
             data: websiteCategoryList
@@ -83,7 +85,7 @@ const cGetAllWebsiteCategory = async () => {
 }
 
 module.exports = {
-    cGetAllWebsiteCategory,
+    cGetFirstWebsiteCategory,
     isExist,
     cAddCategory,
     cBulkddCategory

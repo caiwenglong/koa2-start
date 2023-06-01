@@ -2,7 +2,7 @@
  * @author cwl
  * @description 用户数据模型
  */
-const { DataTypes } = require("sequelize"); // 导入内置数据类型
+const { DataTypes, NUMBER } = require("sequelize"); // 导入内置数据类型
 const seq = require('../seq')
 const {
     STRING,
@@ -27,6 +27,11 @@ const WebsiteCategory = seq.define('website_category', {
         type: DataTypes.UUID,
         allowNull: false,
         comment: '网站父级分类'
+    },
+    order: {
+        type: INTEGER,
+        allowNull: true,
+        comment: '排序号'
     },
     
 })
